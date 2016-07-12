@@ -1,9 +1,24 @@
 import React from 'react';
+import MessageModel from '../models/MessageModel';
 
 class MessageInput extends React.Component {
+	constructor() {
+		super();
 
-	sendMessage() {
-		console.log("send all the messages!");
+		this.model = new MessageModel();
+	}
+
+	sendMessage(event) {
+		event.preventDefault();
+
+		let message = this.refs.newMessage.value;
+		console.log("Message: ", message);
+		console.log("Username: ", this.props.username);
+
+		this.model.addResource({
+			text: message,
+			username: this.props.username
+		})
 	}
 
   render() {
